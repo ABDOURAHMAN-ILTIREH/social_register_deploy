@@ -3,26 +3,31 @@ const { User } = require('../models');
 
 // Middleware to verify JWT from Authorization header
 const authenticateToken = async (req, res, next) => {
-  const token = req.cookies.token; // Accès direct au token
-
+  // Get token from cookie 
+  const token = req.cookies.token;
+  
   if (!token) {
-    return res.status(401).json({ error: "Authentication token missing"  });
+    return res.status(401).json({ error: "Not authenticated" });
   }
 
   try {
     const decoded = jwt.verify(token, process.env.SECRET);
 
     const user = await User.findOne({
-      where: { id: decoded._id},
+      where: { id: decoded._id },
     });
 
     if (!user) {
+      // Clear invalid token
+      res.clearCookie('token');
       return res.status(401).json({ error: "Utilisateur non trouvé." });
     }
 
-    req.user = user; // Attacher l'utilisateur à la requête
+    req.user = user;
     next();
   } catch (error) {
+    // Clear invalid token
+    res.clearCookie('token');
     return res.status(401).json({ error: "Échec de l'authentification." });
   }
 };

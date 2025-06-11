@@ -29,19 +29,26 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
+
 exports.getCurrentUser = async (req, res) => {
-  try {
-    // req.user est injecté par votre middleware authenticateToken
+  res.set('Cache-Control', 'no-store');
+  try { 
+
+       // Debug: Log the entire session
+    console.log('Session:', req.session);
+    
+
     if (!req.user) {
-      return res.status(401).json({ message: 'Utilisateur non authentifié' });
+      await req.session.destroy();
+      return res.status(404).json({ message: 'User not found' });
     }
-    
-    const { id, name, email,role} = req.user;
-    
-    res.status(200).json({ id, name, email, role });
+    const users = req.user
+    res.json(users);
+    console.log('_user_',users);
 
   } catch (error) {
-    res.status(500).json({ message: 'Erreur lors de la récupération de l’utilisateur', error });
+    console.error('Error in getCurrentUser:', error);
+    res.status(500).json({ message: "Erreur lors de la récupération de l'utilisateur", error });
   }
 };
 
@@ -119,7 +126,7 @@ exports.forgotPassword = async (req, res) => {
 
     // Create reset token
     const resetToken = createResetToken(user.id);
-    console.log(resetToken);
+  
     // Store hashed token in DB
     const resetTokenHash = crypto.createHash('sha256').update(resetToken).digest('hex');
     

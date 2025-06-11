@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import mass from "../assets/mass.png"
 import { 
   Home, 
   Users, 
@@ -52,15 +53,15 @@ const Sidebar: React.FC = () => {
     >
       <div className="flex items-center justify-between h-16 px-4 border-b border-blue-800">
         <div className="flex items-center">
-          <div className="text-2xl font-bold text-white">
-            <Users size={28} />
+          <div className="text-2xl font-bold text-white mt-5">
+             <img src={mass} alt="img" className='h-15 rounded' />
           </div>
           <motion.div 
             variants={logoVariants} 
             transition={{ duration: 0.2 }}
             className="ml-2"
           >
-            <span className="text-xl font-semibold">Portail</span>
+          <span className="text-sm font-semibold">Mass</span>
           </motion.div>
         </div>
       </div>

@@ -35,6 +35,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setLoading(true);
     const res = await fetch(`${API_BASE}/getCurrentUser`, {
       credentials: 'include',
+      headers: {
+       'Cache-Control': 'no-cache'
+      },
     });
     if (!res.ok) throw new Error('Non authentifié');
     const data = await res.json();
@@ -46,9 +49,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }
 };
 
-  useEffect(() => {
-    fetchUser();
-  }, []);
+
 
   const login = async (email: string, password: string) => {
     setLoading(true);
@@ -59,7 +60,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include', // Important pour cookies
         body: JSON.stringify({ email, password }),
+
       });
+
 
       if (!res.ok) {
         setUser(null)
@@ -170,6 +173,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+    useEffect(() => {
+     fetchUser();
+   }, []);
+
 
   return (
     <AuthContext.Provider
@@ -191,7 +198,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       {children}
     </AuthContext.Provider>
   );
+
+
 };
+
 
 export const useAuth = () => {
   const context = useContext(AuthContext);

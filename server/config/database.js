@@ -1,7 +1,7 @@
 // config/database.js
 module.exports = {
   development: {
-    username: 'iltireh',
+    username: 'root',
     password: 'iltireh2025',
     database: 'social_register',
     host: 'localhost',
