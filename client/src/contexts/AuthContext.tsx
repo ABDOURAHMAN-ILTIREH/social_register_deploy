@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { Users } from '../types/database';
+import { useNavigate } from 'react-router-dom';
 
 const API_BASE = import.meta.env.VITE_API_URL;
 
@@ -29,19 +30,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [resetSuccess, setResetSuccess] = useState(false);
   const resetError = () => setError(null);
 
+  const navigate = useNavigate();
+
 
   const fetchUser = async () => {
   try {
     setLoading(true);
     const res = await fetch(`${API_BASE}/getCurrentUser`, {
       credentials: 'include',
-      headers: {
-       'Cache-Control': 'no-cache'
-      },
     });
+
     if (!res.ok) throw new Error('Non authentifié');
     const data = await res.json();
     setUser(data);
+
   } catch (err) {
     setUser(null);
   } finally {
@@ -97,8 +99,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         throw new Error(errorData.message || 'Erreur d’inscription');
       }
 
-      // Connexion automatique après inscription
-      await fetchUser();
+      navigate('/login');
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Erreur d’inscription';
       setError(message);
