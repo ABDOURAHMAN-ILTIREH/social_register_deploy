@@ -31,13 +31,7 @@ exports.getAllUsers = async (req, res) => {
 
 
 exports.getCurrentUser = async (req, res) => {
-  res.set('Cache-Control', 'no-store');
   try { 
-
-       // Debug: Log the entire session
-    console.log('Session:', req.session);
-    
-
     if (!req.user) {
       await req.session.destroy();
       return res.status(404).json({ message: 'User not found' });
