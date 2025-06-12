@@ -70,7 +70,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
       },
       activite_principale: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(60),
         allowNull: true,
       },
       handicape: {
