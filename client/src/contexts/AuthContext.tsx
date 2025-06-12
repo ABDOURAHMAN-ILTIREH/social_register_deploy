@@ -182,7 +182,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     <AuthContext.Provider
       value={{
        user,
-        isAuthenticated: !!user,
+        isAuthenticated: user !== null && user.role !== 'nouveaux_utilisateur',
         isAdmin: user?.role === 'chef_de_service',
         login,
         register,
