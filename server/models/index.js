@@ -37,17 +37,8 @@ sequelize
   })
   .catch(async(err) => {
     console.error('Erreur lors de la synchronisation de la base de données :', err);
-    await sequelize.close();
-    process.exit(1);
   });
 
-  // Fermer proprement Sequelize à l'arrêt du serveur
-process.on('SIGINT', async () => {
-  console.log('\nArrêt du serveur...');
-  await sequelize.close();
-  console.log('Connexion à la base de données fermée.');
-  process.exit(0);
-});
 
 module.exports = { sequelize,User,Menage,Enqueteur,Entretien,Equipement,Plainte,Personne,Logement};
 
