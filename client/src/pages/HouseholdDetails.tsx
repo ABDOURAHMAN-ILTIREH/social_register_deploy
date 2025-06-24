@@ -99,8 +99,9 @@ const HouseholdDetails: React.FC = () => {
         { key: 'ventilateurs', label: 'Ventilateurs' },
         { key: 'climatiseurs', label: 'climatiseurs' },
         { key: 'telephone_mobile', label: 'Téléphones mobiles' },
-        { key: 'ordinateur', label: 'ordinateur' },
-        { key: 'machine_a_laver', label: 'machine_a_laver' }
+        { key: 'refrigerateur', label: 'Réfrigerateur' },
+        { key: 'ordinateur', label: 'Ordinateur' },
+        { key: 'machine_a_laver', label: 'Machine a laver' }
       ]
     },
     {
@@ -532,7 +533,7 @@ const HouseholdDetails: React.FC = () => {
                         <div className="grid grid-cols-2 gap-3">
                           {category.items.map(item => {
                             const value = equipement?.[item.key as keyof typeof equipement] || 0;
-                            if (value === 0) return null;
+                            // if (value === 0) return null;
                             
                             return (
                               <div key={item.key} className="flex justify-between items-center bg-white p-2 rounded-md">

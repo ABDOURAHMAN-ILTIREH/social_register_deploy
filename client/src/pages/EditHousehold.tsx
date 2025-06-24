@@ -76,7 +76,7 @@ console.log(householdData);
     ovins: 0,
     camelins: 0,
     volailles: 0,
-    climatiseur: 0
+    climatiseurs: 0
   });
   const [complaintData, setComplaintData] = useState<Omit<Plainte, 'id' | 'menage_id' | 'createdAt'>>({
     categorie_plainte: '',
@@ -151,7 +151,7 @@ console.log(householdData);
             ovins: equipement.ovins,
             camelins: equipement.camelins,
             volailles: equipement.volailles,
-            climatiseur: equipement.climatiseur
+            climatiseurs: equipement.climatiseurs
           });
         }
 
@@ -802,7 +802,7 @@ const handleComplaintSubmit = async (e: React.FormEvent) => {
                   <option value="Branchement extérieur ONEAD, par tuyau">Branchement extérieur ONEAD, par tuyau</option>
                   <option value="Fontaine publique">Fontaine publique</option>
                   <option value="Puits">Puits</option>
-                  <option value="Rivière/cours d'eau/eau de pluie">Rivière/cours d'eau/eau de pluie</option>
+                  <option value="Rivière cours d'eaux de pluie">Rivière cours d'eaux de pluie</option>
                   <option value="Camion citerne">Camion citerne</option>
                 </select>
               </div>
@@ -1003,8 +1003,21 @@ const handleComplaintSubmit = async (e: React.FormEvent) => {
                                     </label>
                                     <input
                                       type="number"
-                                      name="climatiseur"
-                                      value={equipmentData.climatiseur}
+                                      name="climatiseurs"
+                                      value={equipmentData.climatiseurs}
+                                      onChange={handleEquipmentInputChange}
+                                      min="0"
+                                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                                      Telephone_mobile
+                                    </label>
+                                    <input
+                                      type="number"
+                                      name="telephone_mobile"
+                                      value={equipmentData.telephone_mobile}
                                       onChange={handleEquipmentInputChange}
                                       min="0"
                                       className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
@@ -1018,7 +1031,30 @@ const handleComplaintSubmit = async (e: React.FormEvent) => {
                                       type="number"
                                       name="refrigerateur"
                                       value={equipmentData.refrigerateur}
-                      
+                                      onChange={handleEquipmentInputChange}
+                                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                                      Ordinateur
+                                    </label>
+                                    <input
+                                      type="number"
+                                      name="ordinateur"
+                                      value={equipmentData.ordinateur}
+                                      onChange={handleEquipmentInputChange}
+                                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                                      Machine a laver
+                                    </label>
+                                    <input
+                                      type="number"
+                                      name="machine_a_laver"
+                                      value={equipmentData.machine_a_laver}
                                       onChange={handleEquipmentInputChange}
                                       className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                                     />

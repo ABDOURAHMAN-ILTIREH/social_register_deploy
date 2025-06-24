@@ -43,7 +43,7 @@ export interface Equipement {
   televiseurs: number;
   radios: number;
   ventilateurs: number;
-  climatiseur: number;
+  climatiseurs: number;
   telephone_mobile: number;
   refrigerateur: number;
   ordinateur: number;

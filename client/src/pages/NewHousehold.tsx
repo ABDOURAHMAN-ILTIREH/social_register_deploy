@@ -7,6 +7,7 @@ import type { Menage, Logement, Equipement, Plainte } from '../types/database';
 
 
 
+
 type FormStep = 'household' | 'housing' | 'equipment' | 'complaints';
 
 const NewHousehold: React.FC = () => {
@@ -69,7 +70,7 @@ const NewHousehold: React.FC = () => {
     ovins: 0,
     camelins: 0,
     volailles: 0,
-    climatiseur: 0
+    climatiseurs: 0
   });
 
   const [complaintData, setComplaintData] = useState<Omit<Plainte, 'id' | 'menage_id' | 'createdAt'>>({
@@ -904,12 +905,25 @@ const NewHousehold: React.FC = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
+                      telephone_mobile
+                    </label>
+                    <input
+                      type="number"
+                      name="telephone_mobile"
+                      value={equipmentData.telephone_mobile}
+                      onChange={handleEquipmentInputChange}
+                      min="0"
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Climatiseurs
                     </label>
                     <input
                       type="number"
-                      name="climatiseur"
-                      value={equipmentData.climatiseur}
+                      name="climatiseurs"
+                      value={equipmentData.climatiseurs}
                       onChange={handleEquipmentInputChange}
                       min="0"
                       className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
@@ -923,6 +937,19 @@ const NewHousehold: React.FC = () => {
                       type="number"
                       name="refrigerateur"
                       value={equipmentData.refrigerateur}
+                      onChange={handleEquipmentInputChange}
+                      min="0"
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      machine_a_laver
+                    </label>
+                    <input
+                      type="number"
+                      name="machine_a_laver"
+                      value={equipmentData.machine_a_laver}
                       onChange={handleEquipmentInputChange}
                       min="0"
                       className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"

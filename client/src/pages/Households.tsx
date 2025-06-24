@@ -15,7 +15,7 @@ const Households: React.FC = () => {
   const navigate = useNavigate();
   const { menages } = useData();
   const { searchQuery, setSearchQuery } = useUi();
-  const [residenceFilter, setResidenceFilter] = useState<'all' | 'Urbain' | 'Rural'>('all');
+  const [residenceFilter, setResidenceFilter] = useState<'all' | 'urbain' | 'rural'>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const {isAdmin} = useAuth();
@@ -112,12 +112,12 @@ const Households: React.FC = () => {
 
             <select
               value={residenceFilter}
-              onChange={(e) => setResidenceFilter(e.target.value as 'all' | 'Urbain' | 'Rural')}
+              onChange={(e) => setResidenceFilter(e.target.value as 'all' | 'urbain' | 'rural')}
               className="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
             >
               <option value="all">Tous</option>
-              <option value="Urbain">Urbain</option>
-              <option value="Rural">Rural</option>
+              <option value="urbain">urbain</option>
+              <option value="rural">rural</option>
             </select>
           </div>
         </div>
